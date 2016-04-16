@@ -1,0 +1,85 @@
+style.
+  section.auth {
+    max-width: 360px;
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .auth-helper:before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: rgba(0,0,0,.25)
+  }
+
+  .auth-form {
+    box-shadow: 0 0 4px rgba(0,0,0,0.25);
+    background: #FFF;
+    overflow: hidden;
+  }
+
+  .auth-header {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    color: #FFF;
+    font-weight: bold;
+
+    background-color: #3adb76;
+  }
+
+  .auth-label {
+    position: relative;
+  }
+
+  .auth-label-icon {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: lightgray;
+  }
+
+  .auth-input {
+    padding-left: 2.5rem;
+  }
+
+  .auth-inputs,
+  .auth-footer {
+    margin: 1rem;
+  }
+
+  .auth-callout {
+    padding: .5rem;
+  }
+
+  .auth-close-button {
+    right: .5rem;
+    line-height: 0.8 !important;
+  }
+
+  .auth-signup-link {
+    font-size: .75em;
+    text-align: center;
+  }
+
+.auth-helper
+section.auth.row.small-12.small-centered.columns
+  form.auth-form.row.small-12.columns
+    header.auth-header Login form
+    section.auth-inputs
+      label.auth-label
+        i.fa.fa-user.auth-label-icon
+        input.auth-input(type='text' placeholder='Username')
+      label.auth-label
+        i.fa.fa-key.auth-label-icon
+        input.auth-input(type='password' placeholder='Password')
+    footer.auth-footer
+      .callout.auth-callout().alert
+        button.auth-close-button(type='button').close-button: span &times;
+        p Error credentials
+      button.auth-button(type='submit').button.expanded Login
+      p.auth-signup-link New to "Test App"? #[a(href='#') Create an account.]

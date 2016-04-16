@@ -1,0 +1,58 @@
+style.
+  .add {
+    margin-top: 2rem;
+  }
+
+  .add-button {
+    height: 2.4375rem;
+  }
+
+  .transactions-edit {
+    text-align: right;
+  }
+
+section.add.row.small-12.columns
+  .row.collapse
+    label.small-6.columns
+      input(type='text' placeholder='Amount')
+    label.small-3.columns
+      select
+        option ...
+        option(name='' value='1') 1
+        option(name='' value='2') 2
+        option(name='' value='3') 3
+        option(name='' value='4') 4
+    .small-3.columns
+        button.add-button(type='submit').button.expanded Добавить
+
+section.transactions.row.small-12.columns
+  table.hover
+    caption Your new transactions
+    thead
+      tr
+        th ID
+        th Amount
+        th Bank name
+        th
+    tbody
+      tr
+        td 1
+        td #[i.fa.fa-usd] 300
+        td Тинькофф
+        td.button-group.transactions-edit
+          a.button: i.fa.fa-pencil
+          a.button.alert: i.fa.fa-times
+      tr
+        td 1
+        td #[i.fa.fa-usd] 300
+        td Тинькофф
+        td.button-group.transactions-edit
+          a.button: i.fa.fa-pencil
+          a.button.alert: i.fa.fa-times
+      tr
+        td 1
+        td #[i.fa.fa-usd] 300
+        td Тинькофф
+        td.button-group.transactions-edit
+          a.button: i.fa.fa-pencil
+          a.button.alert: i.fa.fa-times
