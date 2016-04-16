@@ -1,0 +1,57 @@
+.section {
+  max-width: 360px;
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  transform: translateY(-50%);
+}
+
+.helper:before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: rgba(0,0,0,.25)
+}
+
+.form {
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+  background: #FFF;
+  overflow: hidden;
+}
+
+.header {
+  position: relative;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  color: #FFF;
+  font-weight: bold;
+
+  background-color: #3adb76;
+}
+
+.label {
+  position: relative;
+}
+
+.label-icon {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: lightgray;
+}
+
+.input {
+  padding-left: 2.5rem;
+}
+
+.inputs,
+.footer {
+  margin: 1rem;
+}
+
+.signup-link {
+  font-size: .75em;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+.callout {
+  composes: callout alert from global;
+  padding: .5rem;
+}
+
+.close-button {
+  composes: close-button from global;
+  right: .5rem;
+  line-height: 0.8 !important;
+}

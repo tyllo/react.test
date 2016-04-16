@@ -1,0 +1,15 @@
+doctype
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    title React - test app
+    meta(name='description' content!=config.package.description)
+    meta(name='keywords' content!=config.package.keywords)
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation.css')
+    link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css')
+    if config.isProduction
+      link(rel='stylesheet' href='#{ config.assets.styles }/#{ config.bundleName }.css')
+  body
+    script(src='#{ config.assets.scripts }/#{ config.bundleName }.js')
