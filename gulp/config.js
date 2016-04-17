@@ -22,6 +22,10 @@ export default {
     styles: 'assets/styles',
   },
 
+  server: {
+    port: 8080,
+  },
+
   isProduction: production,
   isDevelope: develope,
   isDebug: debug,

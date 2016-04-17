@@ -27,6 +27,7 @@ loaders.sass = {
   test: /\.(sass|scss|css)$/,
   loader: extructCSS.extract('style', [
     'css?' + toQuery(cssLoader),
+    'postcss',
     'sass'
   ])
 };
@@ -36,8 +37,21 @@ loaders.template = {
   loader: 'jade-react',
 };
 
+loaders.url = {
+  test: /.*\.(gif|png|jpe?g|svg)$/i,
+  // include: [/images/],
+  loader: 'url',
+  query: {
+    limit: 1 * 1024,
+    name: config.isDevelope
+      ? config.assets.images + '/[name].[ext]'
+      : config.assets.images + '/[name]-[hash:5].[ext]',
+  },
+};
+
 export default [
   loaders.js,
   loaders.sass,
   loaders.template,
+  loaders.url,
 ];

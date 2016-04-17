@@ -6,8 +6,7 @@ gulp.task('connect', () =>
   connect.server({
     root: [config.dest],
     livereload: true,
-    // https://github.com/bripkens/connect-history-api-fallback
-    // fallback: config.dest + '/index.html',
+    port: config.server.port,
   })
 );
 

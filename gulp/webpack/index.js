@@ -20,7 +20,7 @@ export default {
   },
 
   output: {
-    publicPath: config.isDevelope ? 'http://localhost/' : '',
+    publicPath: config.isDevelope ? `http://localhost:${ config.server.port }/` : '',
     filename: config.assets.scripts + '/[name].js',
     chunkFilename: config.assets.scripts + '/[name]-[id].js',
   },
