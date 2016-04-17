@@ -4,6 +4,7 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import ReactMixin from 'react-mixin';
 
+import AuthInput from 'components/auth-input';
 import Callout from 'components/callout';
 import replaceDocumentTitle from 'mixins/replace-document-title';
 
@@ -15,6 +16,14 @@ import style from '../style.scss';
 export default class Auth extends React.Component {
   documentTitle = 'Authorize - sign up';
 
+  state = {
+    username: '',
+    password: '',
+    password_confirm: '',
+    error_username: false,
+    error_password: false,
+  };
+
   constructor(props) {
     super(props);
 
@@ -23,19 +32,17 @@ export default class Auth extends React.Component {
     this.signUp = this.signUp.bind(this);
     this.validateUsername = this.validateUsername.bind(this);
     this.validatePwd = this.validatePwd.bind(this);
-
-    this.state = {
-      username: '',
-      password: '',
-      password_confirm: '',
-      error_username: false,
-      error_password: false,
-    };
+    this.setValue = this.setValue.bind(this);
   }
 
   signUp(e) {
     e.preventDefault();
-    console.log('sign up');
+    var { username, error_username, password, error_password } = this.state;
+    this.validatePwd();
+
+    if (username && password && !error_username && !error_password) {
+      console.log('sign up', username, password);
+    }
   }
 
   closeInfo(fieldName) {
@@ -49,17 +56,24 @@ export default class Auth extends React.Component {
   }
 
   validatePwd() {
-    var password = this.refs.password.value;
-    var confirm = this.refs.password_confirm.value;
+    var password = this.state.password.trim();
+    var confirm = this.state.password_confirm.trim();
 
-    if (password && confirm && password !== confirm) {
-      var error = { error_password: true };
-      this.setState(error);
-      console.log(this.state)
+    if (password && confirm && (password === confirm)) {
+    var error = { error_password: false };
+    this.setState(error);
+      return true;
     }
+
+    var error = { error_password: true };
+    this.setState(error);
+  }
+
+  setValue(fieldName, e) {
+    this.state[fieldName] = e.target.value;
   }
 
   render() {
-    return template.call(this, { Callout });
+    return template.call(this, { AuthInput, Callout });
   }
 }

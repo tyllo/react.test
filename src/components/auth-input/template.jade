@@ -1,0 +1,20 @@
+label(styleName='label')
+
+  if this.props.text
+    span= this.props.text
+
+  if this.props.iconClassName
+    i(className=this.props.iconClassName
+      styleName='label-icon')
+
+  if this.state.value
+    a(href='#'
+      onClick=this.onClean
+      styleName='label-icon-close') &times;
+
+  input(
+    styleName='input'
+    ref='input'
+    onChange=this.onChange
+    defaultValue=this.state.value
+    type=this.props.type)
