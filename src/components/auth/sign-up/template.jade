@@ -1,0 +1,50 @@
+div(styleName='helper')
+section(styleName='section').row.small-12.small-centered.columns
+  form.row.small-12.columns(
+    styleName='form'
+    onSubmit=this.signUp)
+    header(styleName='header') Sign up form
+    section(styleName='inputs')
+      label(styleName='label')
+        span Username
+        i(styleName='label-icon').fa.fa-user
+        a(href='#'
+          onClick=this.clean
+          styleName='label-icon-close').fa.fa-times
+        input(
+          styleName='input'
+          type='text'
+          ref='username'
+          onBlur=this.validateUsername
+          defaultValue=this.state.username)
+      Callout(
+        show=this.state.error_username
+        text='Username exists'
+        close=this.closeInfo.bind(this, 'error_username'))
+      label(styleName='label')
+        span New password
+        i(styleName='label-icon').fa.fa-key
+        a(styleName='label-icon-close').fa.fa-times
+        input(
+          styleName='input'
+          type='password'
+          ref='password'
+          onBlur=this.validatePwd
+          defaultValue=this.state.password)
+      label(styleName='label')
+        span Repeat new password
+        i(styleName='label-icon').fa.fa-key
+        a(styleName='label-icon-close').fa.fa-times
+        input(
+          styleName='input'
+          type='password'
+          ref='password_confirm'
+          onBlur=this.validatePwd
+          defaultValue=this.state.password_confirm)
+      Callout(
+        show=this.state.error_password
+        text='Invalid pasword'
+        close=this.closeInfo.bind(this, 'error_password'))
+    footer(styleName='footer')
+      button(type='submit').button.expanded Create an account
+      p(styleName='signup-link') Already have an account? #[a(href='#') Log in]

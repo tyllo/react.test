@@ -1,5 +1,6 @@
 import React from 'react';
-import Auth from 'components/auth';
+import SignIn from 'components/auth/sign-in';
+import SignUp from 'components/auth/sign-up';
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +13,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <Auth />;
+    return <SignUp />;
   }
 }
 

@@ -1,6 +1,6 @@
 style.
   section.auth {
-    max-width: 360px;
+    max-width: 27rem;
     position: absolute;
     left: 0; right: 0; top: 50%;
     transform: translateY(-50%);
@@ -65,21 +65,24 @@ style.
     font-size: .75em;
     text-align: center;
   }
-
+  
 .auth-helper
 section.auth.row.small-12.small-centered.columns
   form.auth-form.row.small-12.columns
-    header.auth-header Login form
+    header.auth-header Sign up form
     section.auth-inputs
       label.auth-label
-        i.fa.fa-user.auth-label-icon
-        input.auth-input(type='text' placeholder='Username')
+        span Username
+        input.auth-input(type='text')
       label.auth-label
-        i.fa.fa-key.auth-label-icon
-        input.auth-input(type='password' placeholder='Password')
+        span New password
+        input.auth-input(type='password')
+      label.sign-up-label
+        span Repeat new password
+        input.auth-input(type='password')
     footer.auth-footer
       .callout.auth-callout().alert
         button.auth-close-button(type='button').close-button: span &times;
-        p Error credentials
-      button.auth-button(type='submit').button.expanded Login
-      p.auth-signup-link New to "Test App"? #[a(href='#') Create an account.]
+        p Invalid pasword
+      button.auth-button(type='submit').button.expanded Create an account
+      p.auth-signup-link Already have an account? #[a(href='#') Log in]

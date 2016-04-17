@@ -8,17 +8,17 @@ import Callout from 'components/callout';
 import replaceDocumentTitle from 'mixins/replace-document-title';
 
 import template from './template.jade'
-import style from './style.scss';
+import style from '../style.scss';
 
 @CSSModules(style)
 @ReactMixin.decorate(replaceDocumentTitle)
 export default class Auth extends React.Component {
-  documentTitle = 'Authorize';
+  documentTitle = 'Authorize - sign in';
 
   constructor(props) {
     super(props);
 
-    this.authorize = this.authorize.bind(this);
+    this.signIn = this.signIn.bind(this);
     this.closeInfo = this.closeInfo.bind(this);
 
     this.state = {
@@ -26,9 +26,9 @@ export default class Auth extends React.Component {
     };
   }
 
-  authorize(e) {
+  signIn(e) {
     e.preventDefault();
-    console.log('authorize', this, this.documentTitle);
+    console.log('sign in');
   }
 
   closeInfo(e) {

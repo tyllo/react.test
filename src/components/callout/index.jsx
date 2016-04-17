@@ -13,6 +13,6 @@ export default class Callout extends React.Component {
   };
 
   render() {
-    return this.props.show ? template.apply(this) : <noscript />;
+    return this.props.show ? template.apply(this) : <span />;
   }
 }

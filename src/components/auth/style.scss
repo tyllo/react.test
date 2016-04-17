@@ -1,15 +1,34 @@
 .section {
-  max-width: 360px;
+  max-width: 27rem;
   position: absolute;
   left: 0; right: 0; top: 50%;
   transform: translateY(-50%);
 }
 
-.helper:before {
+.helper,
+.helper:before,
+.helper:after {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
-  background: rgba(0,0,0,.25)
+}
+
+.helper:before {
+  $image: 'https://www.acmetek.com/blog/wp-content/uploads/2016/03/img17.jpg';
+  background: url($image);
+  background-size: cover;
+  filter: blur(6px);
+  transform: scale(1.1);
+  z-index: -1;
+}
+
+.helper {
+  background: rgba(0,0,0,.5);
+  overflow: hidden;
+}
+
+.helper:after {
+  background: url(images/bg-login-pattern.gif);
 }
 
 .form {
@@ -34,12 +53,18 @@
 
 .label-icon {
   position: absolute;
-  top: 0; bottom: 0;
+  left: 0; bottom: 0;
   width: 2.5rem;
   line-height: 2.5rem;
   text-align: center;
   font-size: 1.5rem;
   color: lightgray;
+}
+
+.label-icon-close {
+  composes: label-icon;
+  left: auto;
+  right: 0;
 }
 
 .input {
