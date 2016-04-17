@@ -34,15 +34,16 @@ export default class AuthInput extends React.Component {
   }
 
   onClean(e) {
+    e.preventDefault();
     var value = '';
     this.setState({ value });
-    this.props.onChange(e);
+    this.props.onChange({ value });
   }
 
   onChange(e) {
     var value = e.target.value;
     this.setState({ value });
-    this.props.onChange(e);
+    this.props.onChange({ value });
   }
 
   render() {

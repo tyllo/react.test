@@ -17,6 +17,8 @@
     "url": "http://xdraw.ru/"
   },
   "dependencies": {
+    "es6-promise": "^3.1.2",
+    "fetch-polyfill": "^0.8.2",
     "file-loader": "^0.8.5",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",

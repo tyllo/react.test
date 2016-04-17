@@ -1,9 +1,11 @@
 /* globals config */
 
 import React from 'react';
+import { Link } from 'react-router';
 import CSSModules from 'react-css-modules';
 import ReactMixin from 'react-mixin';
 
+import AuthInput from 'components/auth-input';
 import Callout from 'components/callout';
 import replaceDocumentTitle from 'mixins/replace-document-title';
 
@@ -15,28 +17,39 @@ import style from '../style.scss';
 export default class Auth extends React.Component {
   documentTitle = 'Authorize - sign in';
 
+  state = {
+    username: '',
+    password: '',
+    error: false,
+  };
+
   constructor(props) {
     super(props);
 
     this.signIn = this.signIn.bind(this);
     this.closeInfo = this.closeInfo.bind(this);
-
-    this.state = {
-      error: true,
-    };
+    this.setValue = this.setValue.bind(this);
   }
 
   signIn(e) {
     e.preventDefault();
-    console.log('sign in');
+    var { username, password } = this.state;
+
+    if(!username || !password) { return; }
+
+    console.log('sign in', username, password);
   }
 
-  closeInfo(e) {
-    e.preventDefault();
-    this.setState({ error: false });
+  closeInfo() {
+    this.setState({error: false });
+  }
+
+  setValue(fieldName, { value }) {
+    console.log('setValue', fieldName, value)
+    this.state[fieldName] = value;
   }
 
   render() {
-    return template.call(this, { Callout });
+    return template.call(this, { AuthInput, Callout, Link });
   }
 }

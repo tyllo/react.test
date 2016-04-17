@@ -1,6 +1,7 @@
 /* globals config */
 
 import React from 'react';
+import { Link } from 'react-router';
 import CSSModules from 'react-css-modules';
 import ReactMixin from 'react-mixin';
 
@@ -69,11 +70,11 @@ export default class Auth extends React.Component {
     this.setState(error);
   }
 
-  setValue(fieldName, e) {
-    this.state[fieldName] = e.target.value;
+  setValue(fieldName, { value }) {
+    this.state[fieldName] = value;
   }
 
   render() {
-    return template.call(this, { AuthInput, Callout });
+    return template.call(this, { AuthInput, Callout, Link });
   }
 }

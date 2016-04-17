@@ -1,0 +1,25 @@
+if this.props.transactions.length
+  section.transactions.row.small-12.columns
+    table.hover
+      caption this.props.title
+      thead
+        tr
+          th ID
+          th Amount
+          th Bank name
+          if this.props.edit
+            th
+      tbody
+        each transaction, index in this.props.transactions
+          tr(key=transaction.id)
+            td= transaction.id
+            td #[i.fa.fa-usd] #[span= transaction.amount]
+            td= transaction.bankId
+            if this.props.edit
+              td.button-group(styleName='edit')
+                a.button(
+                  onClick=this.edit.bind(this, transaction)
+                  href='#'): i.fa.fa-pencil
+                a.button.alert(
+                  onClick=this.delete.bind(this, transaction)
+                  href='#'): i.fa.fa-times

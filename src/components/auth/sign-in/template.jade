@@ -1,18 +1,31 @@
 div(styleName='helper')
 section(styleName='section').row.small-12.small-centered.columns
-  form(styleName='form' onSubmit=this.signIn).row.small-12.columns
+  form.row.small-12.columns(
+    styleName='form'
+    onSubmit=this.signIn)
+
     header(styleName='header') Login form
     section(styleName='inputs')
-      label(styleName='label')
-        i(styleName='label-icon').fa.fa-user
-        input(styleName='input' type='text' placeholder='Username')
-      label(styleName='label')
-        i(styleName='label-icon').fa.fa-key
-        input(styleName='input' type='password' placeholder='Password')
-    footer(styleName='footer')
+
+      AuthInput(
+        text='Username'
+        type='text'
+        onChange=this.setValue.bind(this, 'username')
+        iconClassName='fa fa-user'
+        value=this.state.username)
+
+      AuthInput(
+        text='Password'
+        type='password'
+        onChange=this.setValue.bind(this, 'password')
+        iconClassName='fa fa-user'
+        value=this.state.password)
+
       Callout(
         show=this.state.error
         text='Error credentials'
         close=this.closeInfo)
+
+    footer(styleName='footer')
       button(type='submit').button.expanded Login
-      p(styleName='signup-link') New to "Test App"? #[a(href='#') Create an account.]
+      p(styleName='signup-link') New to "Test App"? #[Link(to='sign-up') Create an account.]

@@ -1,19 +1,27 @@
-const URL = {
-  BANKS: 'http://en.wikipedia.org/wiki/List_of_banks_%28alphabetically%29',
-  BASELINK: 'http://en.wikipedia.org',
-}
+import 'es6-promise';
+import 'fetch-polyfill';
 
-fetch(URL.BANKS)
+const URL = {
+  WIKI: 'http://en.wikipedia.org/wiki/List_of_banks_%28alphabetically%29',
+  BASELINK: 'http://en.wikipedia.org',
+  FETCHURL: '//alloworigin.com/get?url='
+};
+
+export default () => fetch(URL.FETCHURL + encodeURIComponent(URL.WIKI))
   .then(response => response.text())
+  .then(response => JSON.parse(response).contents)
   .then(parseBanks)
-  .then(res => console.log(res))
   .catch(error => console.log(error));
 
 /*********************************************
                   helpers
 *********************************************/
 
+// bad idea global
+var bankId = 0;
+
 /**
+ * @type {Number} id
  * @type {String} link
  * @type {String} name
  * @type {String} city
@@ -21,6 +29,7 @@ fetch(URL.BANKS)
  */
 class Bank {
   constructor(bank) {
+    this.id = bankId++;
     this.link = bank.link;
     this.name = bank.name;
     this.city = bank.city;

@@ -1,19 +1,19 @@
 import React from 'react';
-import SignIn from 'components/auth/sign-in';
-import SignUp from 'components/auth/sign-up';
+
+import Navigation from 'components/navigation';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    // this.handleUserInput = this.handleUserInput.bind(this);
-
-    this.state = {
-    };
-  }
+  static state = {
+    auth: false,
+  };
 
   render() {
-    return <SignUp />;
+    return (
+      <div>
+        <Navigation />
+        {this.props.children}
+      </div>
+    );
   }
 }
 
