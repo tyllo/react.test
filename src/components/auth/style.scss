@@ -5,32 +5,6 @@
   transform: translateY(-50%);
 }
 
-.helper,
-.helper:before,
-.helper:after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-}
-
-.helper:before {
-  $image: 'https://www.acmetek.com/blog/wp-content/uploads/2016/03/img17.jpg';
-  background: url($image);
-  background-size: cover;
-  filter: blur(6px);
-  transform: scale(1.1);
-  z-index: -1;
-}
-
-.helper {
-  background: rgba(0,0,0,.5);
-  overflow: hidden;
-}
-
-.helper:after {
-  background: url(images/bg-login-pattern.gif);
-}
-
 .form {
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
   background: #FFF;

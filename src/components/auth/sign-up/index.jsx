@@ -3,20 +3,15 @@
 import React from 'react';
 import { Link } from 'react-router';
 import CSSModules from 'react-css-modules';
-import ReactMixin from 'react-mixin';
 
 import AuthInput from 'components/auth-input';
 import Callout from 'components/callout';
-import replaceDocumentTitle from 'mixins/replace-document-title';
 
 import template from './template.jade'
 import style from '../style.scss';
 
 @CSSModules(style)
-@ReactMixin.decorate(replaceDocumentTitle)
 export default class Auth extends React.Component {
-  documentTitle = 'Authorize - sign up';
-
   state = {
     username: '',
     password: '',

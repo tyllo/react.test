@@ -1,35 +1,24 @@
 import React from 'react';
-import ReactMixin from 'react-mixin';
 import CSSModules from 'react-css-modules';
-
-import ViewTransaction from 'components/view-transaction';
 
 import style from './style.scss';
 import template from './template.jade';
-import replaceDocumentTitle from 'mixins/replace-document-title';
-
-import fetchBanks from 'api/fetch-banks';
 
 @CSSModules(style)
-@ReactMixin.decorate(replaceDocumentTitle)
 export default class AddTransaction extends React.Component {
-  documentTitle = 'Add transaction';
-
-  state = {
-    newTransactions: [
-      {id: 0, amount: 300, bankId: 10 }
-    ],
+  static defaultProps = {
     banks: [],
+    transactions: [],
+  };
+
+  static propTypes = {
+    banks: React.PropTypes.array.isRequired,
+    transactions: React.PropTypes.array.isRequired,
+    addTransaction: React.PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
-
-    fetchBanks().then(banks => {
-      this.setState({ banks });
-    }).catch(error => {
-      console.log(error);
-    });
 
     this.addTransaction = this.addTransaction.bind(this);
     this.validateAmount = this.validateAmount.bind(this);
@@ -38,23 +27,33 @@ export default class AddTransaction extends React.Component {
   addTransaction(e) {
     e.preventDefault();
     var select = this.refs.select;
-    var newTransactions = this.state.newTransactions.slice();
+    var amount = this.refs.amount.value;
+    var transactions = this.props.transactions.slice();
 
-    newTransactions.push({
-      id: +this.state.newTransactions.length,
-      amount: +this.refs.amount.value,
+    if (!select.selectedIndex || !amount.length) {
+      return;
+    }
+
+    var maxId = transactions.length
+      ? Math.max.apply(Math, transactions.map(item => item.id))
+      : 0;
+
+    this.props.addTransaction({
+      id: (maxId + 1),
+      amount: +amount,
       bankId: +select.options[select.selectedIndex].value,
-    })
+    });
 
-    this.setState({ newTransactions });
+    this.setState({ transactions });
+    this.refs.form.reset();
   }
 
-
   validateAmount(e) {
-    console.log('validateAmount', e.target.value)
+    // TODO: need remove repeat dots
+    this.refs.amount.value = e.target.value.replace(/[^\d\.]/g, '');
   }
 
   render() {
-   return template.call(this, { ViewTransaction });
+   return template.call(this);
   }
 }

@@ -1,11 +1,18 @@
 import React from 'react';
-
 import Navigation from 'components/navigation';
 
-class App extends React.Component {
+const AUTHARICATE = true;
+
+export default class App extends React.Component {
   static state = {
     auth: false,
   };
+
+  static checkLogin(nextState, replace) {
+    if (!AUTHARICATE) {
+      replace('auth');
+    }
+  }
 
   render() {
     return (
@@ -16,5 +23,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;
