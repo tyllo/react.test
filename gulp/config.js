@@ -29,4 +29,5 @@ export default {
   isProduction: production,
   isDevelope: develope,
   isDebug: debug,
+  NODE_ENV: production ? 'production' : 'develope',
 };
