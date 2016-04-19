@@ -10,8 +10,7 @@ const URL = {
 export default () => fetch(URL.FETCHURL + encodeURIComponent(URL.WIKI))
   .then(response => response.text())
   .then(response => JSON.parse(response).contents)
-  .then(parseBanks)
-  .catch(error => console.log(error));
+  .then(parseBanks);
 
 /*********************************************
                   helpers

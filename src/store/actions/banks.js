@@ -1,3 +1,4 @@
+import requester from 'services/requester';
 import {
   BANKS_REQUEST,
   BANKS_SUCCESS,
@@ -5,8 +6,16 @@ import {
 } from 'store/constants/banks';
 
 export function getBanks() {
-  // TODO async
-  return {
-    type: BANKS_REQUEST
+  return (dispatch) => {
+    dispatch({ type: BANKS_REQUEST });
+
+    requester.getBanks()
+      .then((banks) => dispatch({
+        type: BANKS_SUCCESS,
+        payload: banks,
+      })).catch((error) => dispatch({
+        type: BANKS_FAIL,
+        error
+      }));
   }
 }

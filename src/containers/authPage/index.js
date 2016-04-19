@@ -12,17 +12,15 @@ import SignUp from 'components/auth/sign-up';
 import replaceDocumentTitle from 'mixins/replace-document-title';
 import style from './style.scss';
 
-const AUTHARICATE = false;
-
 @CSSModules(style)
 @ReactMixin.decorate(replaceDocumentTitle)
 class AuthPage extends React.Component {
   documentTitle = 'Authorize';
 
   static checkLogin(nextState, replace) {
-    if (AUTHARICATE) {
-      replace('/');
-    }
+    // if (AUTHARICATE) {
+    //   replace('/');
+    // }
   }
 
   static logout(nextState, replace) {

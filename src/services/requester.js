@@ -1,6 +1,7 @@
 import 'es6-promise';
 import 'fetch-polyfill';
 import Storage from 'services/storage';
+import fetchBanks from './fetch-banks';
 
 const URL = {
   LOGIN:  config.assets.path + '/ok.json',
@@ -11,6 +12,8 @@ const URL = {
 export default {
   login,
   signin,
+  logout,
+  getBanks: fetchBanks,
 };
 
 export function login(payload) {

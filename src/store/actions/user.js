@@ -20,20 +20,18 @@ export function checkAuth() {
 }
 
 export function login(payload) {
-  // TODO async
-  return {
-    type: SIGNIN_REQUEST,
-    payload,
-  }
-}
-
-export function login(payload) {
   return (dispatch) => {
     dispatch({ type: SIGNIN_REQUEST });
 
     requester.login(payload)
-      .then(() => dispatch({ type: SIGNIN_SUCCESS }))
-      .catch((error) => dispatch({ type: SIGNIN_FAIL, error }));
+      .then(() => dispatch({
+        type: SIGNIN_SUCCESS,
+        redirect: '/',
+      }))
+      .catch((error) => dispatch({
+        type: SIGNIN_FAIL,
+        error,
+      }));
   }
 }
 
