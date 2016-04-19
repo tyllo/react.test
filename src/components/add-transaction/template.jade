@@ -1,20 +1,19 @@
 div
-  section.row.small-12.columns(
+  section.row.small-12.medium-8.columns(
     styleName='add')
     form.row.collapse(
       ref='form'
-      onSubmit=this.addTransaction)
-      label.small-6.columns
+      onSubmit=this.saveTransaction)
+      label.small-5.columns
         input(
           type='tel'
           ref='amount'
           onChange=this.validateAmount
           placeholder='Amount')
-      label.small-3.columns
+      label.small-4.columns
         select(ref='select' disabled=!this.props.banks.length)
           option ...
           each bank in this.props.banks
             option(key=bank.id value=bank.id)= bank.name
-
       .small-3.columns
         button(type='submit' styleName='button').button.expanded Добавить

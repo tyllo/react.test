@@ -14,17 +14,17 @@ export default class AddTransaction extends React.Component {
   static propTypes = {
     banks: React.PropTypes.array.isRequired,
     transactions: React.PropTypes.array.isRequired,
-    addTransaction: React.PropTypes.func.isRequired,
+    saveTransaction: React.PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
-    this.addTransaction = this.addTransaction.bind(this);
+    this.saveTransaction = this.saveTransaction.bind(this);
     this.validateAmount = this.validateAmount.bind(this);
   }
 
-  addTransaction(e) {
+  saveTransaction(e) {
     e.preventDefault();
     var select = this.refs.select;
     var amount = this.refs.amount.value;
@@ -38,7 +38,7 @@ export default class AddTransaction extends React.Component {
       ? Math.max.apply(Math, transactions.map(item => item.id))
       : 0;
 
-    this.props.addTransaction({
+    this.props.saveTransaction({
       id: (maxId + 1),
       amount: +amount,
       bankId: +select.options[select.selectedIndex].value,

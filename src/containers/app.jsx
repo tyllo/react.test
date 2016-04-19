@@ -1,7 +1,8 @@
 import React from 'react';
 import Navigation from 'components/navigation';
+import style from 'styles/main.scss';
 
-const AUTHARICATE = true;
+const AUTHARICATE = false;
 
 export default class App extends React.Component {
   static state = {

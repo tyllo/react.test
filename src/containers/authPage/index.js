@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import CSSModules from 'react-css-modules';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as AuthActions from 'store/actions/auth';
+
 import replaceDocumentTitle from 'mixins/replace-document-title';
 import style from './style.scss';
 
-// TODO: redux!!!
-import fetchBanks from 'api/fetch-banks';
-const AUTHARICATE = true;
+const AUTHARICATE = false;
 
 @CSSModules(style)
 @ReactMixin.decorate(replaceDocumentTitle)

@@ -19,7 +19,7 @@ export default class ViewTransactions extends React.Component {
     title: React.PropTypes.string,
     banks: React.PropTypes.array.isRequired,
     transactions: React.PropTypes.array.isRequired,
-    deleteTransaction: React.PropTypes.func,
+    deleteTransaction: React.PropTypes.func.isRequired,
   };
 
   constructor(props) {

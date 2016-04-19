@@ -7,17 +7,15 @@ if this.props.transactions.length
           th ID
           th Amount
           th Bank name
-          if this.props.deleteTransaction
-            th
+          th
       tbody
         each transaction, index in this.props.transactions
           tr(key=transaction.id)
             td= transaction.id
             td #[i.fa.fa-usd] #[span= transaction.amount]
             td: BankName(bankId=transaction.bankId banks=this.props.banks)
-            if this.props.deleteTransaction
-              td.button-group(styleName='edit')
-                a.button.alert(
-                  title='delete'
-                  onClick=this.delete.bind(this, transaction)
-                  href='#'): i.fa.fa-times
+            td.button-group(styleName='edit')
+              a.button.alert(
+                title='delete'
+                onClick=this.delete.bind(this, transaction)
+                href='#'): i.fa.fa-times
