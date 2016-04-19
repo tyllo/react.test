@@ -1,5 +1,7 @@
+/* globals config */
+
 import React from 'react';
-import { Router, Route, IndexRedirect, hashHistory } from 'react-router';
+import { Router, Route, IndexRedirect, browserHistory, hashHistory } from 'react-router';
 
 import App from 'containers/app';
 import Transactions from 'containers/transactions';
@@ -11,7 +13,7 @@ import SignUp from 'components/auth/sign-up';
 
 export default () => ({
   render: () => (
-    <Router history={hashHistory}>
+    <Router history={config.isDevelope ? browserHistory : hashHistory}>
       <Route path='/' component={App} onEnter={App.checkLogin}>
         <IndexRedirect to='transactions' />
         <Route path='transactions' component={Transactions} />

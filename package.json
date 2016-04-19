@@ -22,11 +22,9 @@
     "file-loader": "^0.8.5",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-mixin": "^3.0.5",
     "react-redux": "^4.4.4",
     "react-router": "^2.1.1",
     "redux": "^3.4.0",
-    "redux-devtools": "^3.2.0",
     "redux-thunk": "^2.0.1",
     "url-loader": "^0.5.7"
   },
@@ -52,8 +50,6 @@
     "eslint-plugin-react": "^4.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.1",
-    "gulp-connect": "^3.2.2",
-    "gulp-if": "^2.0.0",
     "gulp-jade": "^1.1.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
@@ -61,11 +57,14 @@
     "node-sass": "^3.4.2",
     "postcss-loader": "^0.8.2",
     "react-css-modules": "^3.7.6",
+    "react-hot-loader": "^1.3.0",
+    "react-mixin": "^3.0.5",
     "redux-devtools": "^3.2.0",
     "require-dir": "^0.3.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
     "vinyl-named": "^1.1.0",
+    "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.1.0"
   }
 }

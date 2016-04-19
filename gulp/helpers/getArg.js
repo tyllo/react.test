@@ -4,6 +4,6 @@ export default function getArg(key) {
   return (index < 0) ? null : (!next || next[0] === "-") ? true : next;
 };
 
-export let production = getArg('--prod') || getArg('--production') || getArg('build') || false;
-export let develope = !production;
-export let debug = getArg('--debug') || develope || false;
+export let isProduction = getArg('--prod') || getArg('--production') || getArg('build') || false;
+export let isDevelope = !isProduction;
+export let isDebug = getArg('--debug') || isDevelope || false;

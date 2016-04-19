@@ -1,8 +1,8 @@
-import { debug, develope, production } from './helpers/getArg';
+import { isDebug, isDevelope, isProduction } from './helpers/getArg';
 import packageInfo from '../package.json';
 
 var src = './src';
-var dest = production ? './build' : './dist';
+var dest = isProduction ? './build' : './dist';
 
 export default {
   package: packageInfo,
@@ -26,8 +26,8 @@ export default {
     port: 8080,
   },
 
-  isProduction: production,
-  isDevelope: develope,
-  isDebug: debug,
-  NODE_ENV: production ? 'production' : 'develope',
+  isProduction,
+  isDevelope,
+  isDebug,
+  NODE_ENV: isProduction ? 'production' : 'develope',
 };

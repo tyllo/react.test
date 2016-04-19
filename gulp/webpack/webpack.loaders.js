@@ -18,10 +18,17 @@ function toQuery(obj) {
 var loaders = {};
 
 loaders.js = {
-  test: /\.jsx?$/,
+  test: /\.js$/,
   exclude: [/\/node_modules\//, /\/bower_components\//],
   loaders: ['babel']
 };
+
+loaders.jsx = {
+  test: /\.jsx$/,
+  exclude: [/\/node_modules\//, /\/bower_components\//],
+  loaders: config.isDevelope ? ['react-hot', 'babel'] : ['babel'],
+};
+
 
 loaders.sass = {
   test: /\.(sass|scss|css)$/,
@@ -51,6 +58,7 @@ loaders.url = {
 
 export default [
   loaders.js,
+  loaders.jsx,
   loaders.sass,
   loaders.template,
   loaders.url,

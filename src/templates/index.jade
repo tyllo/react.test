@@ -7,8 +7,8 @@ html
     meta(name='description' content!=config.package.description)
     meta(name='keywords' content!=config.package.keywords)
     meta(name='viewport' content='width=device-width, initial-scale=1')
-    link(rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation.css')
-    link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css')
+    link(rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation.min.css')
+    link(rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css')
     if config.isProduction
       link(rel='stylesheet' href='#{ config.assets.styles }/#{ config.bundleName }.css')
   body

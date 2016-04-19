@@ -6,8 +6,14 @@ import loaders, { cssLoader } from './webpack.loaders';
 import plugins from './webpack.plugins';
 
 export default {
+  cache: true,
 
   context: path.resolve(config.src),
+
+  entry: [
+    'webpack/hot/only-dev-server',
+    `./${ config.bundleName }`,
+  ],
 
   resolve: {
     root: [
@@ -20,9 +26,10 @@ export default {
   },
 
   output: {
+    path: path.resolve(config.dest),
     publicPath: config.isDevelope ? `http://localhost:${ config.server.port }/` : '',
     filename: config.assets.scripts + '/[name].js',
-    chunkFilename: config.assets.scripts + '/[name]-[id].js',
+    chunkFilename: config.assets.scripts + '/[name]-[id].chunk.js',
   },
 
   watch: config.isDevelope,
@@ -55,4 +62,16 @@ export default {
   },
 
   devtool: config.isDebug ? 'source-map' : false,
+
+  devServer: {
+    port: config.server.port,
+    hot: true,
+    inline: true,
+    contentBase: config.dest,
+    historyApiFallback: true,
+    // compress: config.isDebug,
+    // quiet: true,
+    open: true,
+    stats: { colors: true },
+  },
 };
