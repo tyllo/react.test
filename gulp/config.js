@@ -17,6 +17,7 @@ export default {
   },
 
   assets: {
+    path: 'assets',
     images: 'assets/images',
     scripts: 'assets/scripts',
     styles: 'assets/styles',

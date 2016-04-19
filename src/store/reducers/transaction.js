@@ -12,7 +12,7 @@ import {
 
 const initialState = {};
 
-export default function userState(state = initialState, action) {
+export default function transactionState(state = initialState, action) {
   switch (action.type) {
     case TRANSACTION_SAVE:
       // TODO

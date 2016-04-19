@@ -4,7 +4,10 @@ import CSSModules from 'react-css-modules';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as AuthActions from 'store/actions/auth';
+import * as UserActions from 'store/actions/user';
+
+import SignIn from 'components/auth/sign-in';
+import SignUp from 'components/auth/sign-up';
 
 import replaceDocumentTitle from 'mixins/replace-document-title';
 import style from './style.scss';
@@ -13,7 +16,7 @@ const AUTHARICATE = false;
 
 @CSSModules(style)
 @ReactMixin.decorate(replaceDocumentTitle)
-export default class Auth extends React.Component {
+class AuthPage extends React.Component {
   documentTitle = 'Authorize';
 
   static checkLogin(nextState, replace) {
@@ -30,8 +33,12 @@ export default class Auth extends React.Component {
     return (
       <div>
         <div styleName='helper' />
-        {this.props.children}
+        {('sign-up' === this.props.params.name) ? <SignUp /> : <SignIn />}
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ user }) => user;
+
+export default connect(mapStateToProps)(AuthPage);

@@ -6,7 +6,7 @@ import {
 
 const initialState = [];
 
-export default function userState(state = initialState, action) {
+export default function bankState(state = initialState, action) {
   switch (action.type) {
     case BANKS_REQUEST:
       // TODO

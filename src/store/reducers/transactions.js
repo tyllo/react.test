@@ -8,7 +8,7 @@ import {
 const defaults = [];
 const initialState = Storage.get('trnsactions', defaults);
 
-export default function userState(state = initialState, action) {
+export default function transactionsState(state = initialState, action) {
   switch (action.type) {
     case TRANSACTIONS_REQUEST:
       // TODO

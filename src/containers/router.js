@@ -1,4 +1,4 @@
-/* globals config */
+/* global config */
 
 import React from 'react';
 import { Router, Route, IndexRedirect, browserHistory, hashHistory } from 'react-router';
@@ -9,9 +9,6 @@ import App from 'containers/app';
 import TransactionsPage from 'containers/transactionsPage';
 import OverviewPage from 'containers/overviewPage';
 import AuthPage from 'containers/authPage';
-
-import SignIn from 'components/auth/sign-in';
-import SignUp from 'components/auth/sign-up';
 
 const store = configureStore();
 
@@ -26,8 +23,7 @@ export default () => ({
         </Route>
         <Route path='auth' component={AuthPage} onEnter={AuthPage.checkLogin}>
           <IndexRedirect to='sign-in' />
-          <Route path='sign-in' component={SignIn} />
-          <Route path='sign-up' component={SignUp} />
+          <Route path=':name' component={AuthPage} onEnter={AuthPage.checkLogin} />
         </Route>
         <Route path='logout' component={AuthPage} onEnter={AuthPage.logout}>
           <IndexRedirect to='auth' />

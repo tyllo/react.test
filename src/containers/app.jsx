@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Navigation from 'components/navigation';
 import style from 'styles/main.scss';
 
