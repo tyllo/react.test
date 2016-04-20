@@ -20,6 +20,7 @@ export default class AuthInput extends React.Component {
     type: React.PropTypes.string,
     value: React.PropTypes.string,
     onChange: React.PropTypes.func,
+    tabindex: React.PropTypes.number,
   };
 
   constructor(props) {

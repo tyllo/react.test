@@ -1,11 +1,11 @@
 div
   AddTransaction(
-    banks=this.state.banks
-    transactions=this.state.transactions
-    saveTransaction=this.saveTransaction)
+    banks=this.props.banks
+    transactions=this.props.transactions
+    addTransaction=this.addTransaction)
 
   ViewTransactions(
     title='Your new transactions'
-    banks=this.state.banks
-    transactions=this.state.transactions
+    banks=this.props.banks
+    transactions=this.state.newTransactions
     deleteTransaction=this.deleteTransaction)

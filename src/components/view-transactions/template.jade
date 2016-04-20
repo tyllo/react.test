@@ -1,7 +1,7 @@
 if this.props.transactions.length
-  section.transactions.row.small-12.columns
+  section(styleName='transactions').row.small-12.columns
     table
-      caption!= this.props.title
+      caption(styleName='caption')= this.props.title
       thead
         tr
           th ID
@@ -11,7 +11,7 @@ if this.props.transactions.length
       tbody
         each transaction, index in this.props.transactions
           tr(key=transaction.id)
-            td= transaction.id
+            td= index + 1
             td #[i.fa.fa-usd] #[span= transaction.amount]
             td: BankName(bankId=transaction.bankId banks=this.props.banks)
             td.button-group(styleName='edit')

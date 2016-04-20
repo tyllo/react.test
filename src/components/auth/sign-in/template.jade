@@ -10,6 +10,7 @@ section(styleName='section').row.small-12.small-centered.columns
         text='Username'
         type='text'
         onChange=this.setValue.bind(this, 'username')
+        tabindex=1
         iconClassName='fa fa-user'
         value=this.state.username)
 
@@ -17,6 +18,7 @@ section(styleName='section').row.small-12.small-centered.columns
         text='Password'
         type='password'
         onChange=this.setValue.bind(this, 'password')
+        tabindex=2
         iconClassName='fa fa-user'
         value=this.state.password)
 
@@ -27,5 +29,7 @@ section(styleName='section').row.small-12.small-centered.columns
         close=this.closeInfo)
 
     footer(styleName='footer')
-      button(type='submit').button.expanded Login
-      p(styleName='signup-link') New to "Test App"? #[Link(to='/auth/sign-up') Create an account.]
+      button(tabIndex=3 type='submit').button.expanded Login
+      p(styleName='signup-link')
+        span New to &laquo;Test App&raquo;?&nbsp;
+        Link(to='/auth/sign-up') Create an account.

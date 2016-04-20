@@ -1,7 +1,7 @@
 /* global config */
 
 import React from 'react';
-import { Router, Route, IndexRedirect, browserHistory, hashHistory } from 'react-router';
+import { Router, Route, IndexRedirect, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from 'store/configureStore';
 
@@ -12,29 +12,21 @@ import AuthPage from 'containers/authPage';
 
 const store = configureStore();
 
-function checkLogin(nextState, replace) {
-  if (store.getState().user.isAutharicate) {
-    replace('/');
-  }
-}
-
-function logout() {}
-
 export default () => ({
   render: () => (
     <Provider store={store}>
-      <Router history={config.isDevelope ? browserHistory : hashHistory}>
-        <Route path='/' component={App} onEnter={checkLogin}>
+      <Router history={hashHistory}>
+        <Route path='/' component={App}>
           <IndexRedirect to='transactions' />
           <Route path='transactions' component={TransactionsPage} />
           <Route path='overview' component={OverviewPage} />
         </Route>
-        <Route path='auth' component={AuthPage} onEnter={checkLogin}>
+        <Route path='/auth' component={AuthPage}>
           <IndexRedirect to='sign-in' />
           <Route path=':name' component={AuthPage} />
         </Route>
-        <Route path='logout' component={AuthPage} onEnter={logout}>
-          <IndexRedirect to='auth' />
+        <Route path='/logout' component={AuthPage}>
+          <IndexRedirect to='/auth/logout' />
         </Route>
       </Router>
     </Provider>

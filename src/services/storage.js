@@ -1,27 +1,18 @@
+/* global config */
+
 const Storage = localStorage;
 const prefix = '__react-app__';
-
-/* global config */
 
 export default { get, set, clear }
 
 // getter
-export function get(name, defaults = null) {
-  var data;
-
+export function get(name, defaults) {
   try {
-    data = JSON.parse(Storage.getItem(prefix + name));
+    return JSON.parse(Storage.getItem(prefix + name));
   } catch (e) {
     config.isDebug && console.log(e);
-    data = null;
+    return defaults;
   }
-
-  if (!data) {
-    data = Object.assign({}, defaults);
-    data && set(prefix + name, defaults);
-  }
-
-  return data;
 }
 
 // setter

@@ -51,10 +51,9 @@ export default class Auth extends React.Component {
 
   signUp(e) {
     e.preventDefault();
-    var { username, password, error_password } = this.state;
-    this.validatePwd();
+    var { username, password } = this.state;
 
-    if (username && password && !error_password) {
+    if (username && password && this.validatePwd()) {
       this.props.actions.signup({ username, password });
     }
   }
@@ -69,13 +68,11 @@ export default class Auth extends React.Component {
     var confirm = this.state.password_confirm.trim();
 
     if (password && confirm && (password === confirm)) {
-    var error = { error_password: false };
-    this.setState(error);
+      this.setState({ error_password: false });
       return true;
+    } else {
+      this.setState({ error_password: true });
     }
-
-    var error = { error_password: true };
-    this.setState(error);
   }
 
   setValue(fieldName, { value }) {

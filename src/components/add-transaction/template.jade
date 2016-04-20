@@ -1,19 +1,27 @@
 div
   section.row.small-12.medium-8.columns(
-    styleName='add')
+    styleName='transaction-add')
     form.row.collapse(
       ref='form'
-      onSubmit=this.saveTransaction)
+      onSubmit=this.addTransaction)
       label.small-5.columns
         input(
           type='tel'
           ref='amount'
           onChange=this.validateAmount
+          tabIndex=1
           placeholder='Amount')
       label.small-4.columns
-        select(ref='select' disabled=!this.props.banks.length)
-          option ...
+        select(
+          ref='select'
+          tabIndex=2
+          disabled=!this.props.banks.length)
+          option= this.props.banks.length ? '...' : 'Loading...'
           each bank in this.props.banks
             option(key=bank.id value=bank.id)= bank.name
+
       .small-3.columns
-        button(type='submit' styleName='button').button.expanded Добавить
+        button(
+          type='submit'
+          tabIndex=3
+          styleName='button').button.expanded Добавить

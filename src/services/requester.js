@@ -24,7 +24,7 @@ export function login(payload) {
 
   return fetch(URL.LOGIN, config).then(() => {
     // try get user from Storage if auth
-    var user = Storage.get('user', {});
+    var user = Storage.get('user') || {};
 
     if (user.username !== payload.username) {
       throw new Error('User not found');
@@ -47,8 +47,9 @@ export function signup(payload) {
   return fetch(URL.SIGNUP, config).then(() => {
     // try get user from Storage if auth
     var user = Storage.get('user', {});
+    var { username, password } = payload;
 
-    if (user.username === payload.username) {
+    if (user && (user.username === username)) {
       throw new Error('User exist');
     }
 

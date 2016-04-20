@@ -10,9 +10,9 @@ export function getBanks() {
     dispatch({ type: BANKS_REQUEST });
 
     requester.getBanks()
-      .then((banks) => dispatch({
+      .then((payload) => dispatch({
         type: BANKS_SUCCESS,
-        payload: banks,
+        payload,
       })).catch(({ message }) => dispatch({
         type: BANKS_FAIL,
         payload: { error: message },

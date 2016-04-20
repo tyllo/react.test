@@ -15,11 +15,11 @@ const defaults = {
   username: '',
   password: '',
   error: '',
-  isAutharicate: false,
+  isAutharicated: false,
   // TODO: hash
 };
 
-const initialState = Storage.get('user', defaults);
+export const initialState = Storage.get('user') || defaults;
 
 export default function userState(state = initialState, action) {
   var newState = Object.assign({}, state);
@@ -27,18 +27,21 @@ export default function userState(state = initialState, action) {
   switch (action.type) {
     case SIGNIN_REQUEST:
     case SIGNUP_REQUEST:
+      action.payload.error = '';
       return Object.assign(newState, action.payload);
 
     case SIGNIN_SUCCESS:
     case SIGNUP_SUCCESS:
-      return Object.assign(newState, { isAutharicate: true });
+      Object.assign(newState, { isAutharicated: true, error: '' });
+      Storage.set('user', newState);
+      return newState;
 
     case SIGNIN_FAIL:
     case SIGNUP_FAIL:
       return Object.assign(newState, action.payload);
 
     case LOGOUT_SUCCESS:
-      return Object.assign(newState, { isAutharicate: false });
+      return Object.assign({}, defaults);
 
     default:
       return state;
