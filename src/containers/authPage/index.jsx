@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 @CSSModules(style)
-@ReactMixin.decorate(replaceDocumentTitle)
 @Connect(mapStateToProps, mapDispatchToProps)
+@ReactMixin.decorate(replaceDocumentTitle)
 export default class AuthPage extends React.Component {
   documentTitle = 'Authorize';
 

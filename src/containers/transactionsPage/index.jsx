@@ -18,8 +18,8 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(TransactionActions, dispatch),
 });
 
-@ReactMixin.decorate(replaceDocumentTitle)
 @Connect(mapStateToProps, mapDispatchToProps)
+@ReactMixin.decorate(replaceDocumentTitle)
 export default class Transactions extends React.Component {
   documentTitle = 'Transactions';
 
