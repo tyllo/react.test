@@ -13,9 +13,9 @@ export function getBanks() {
       .then((banks) => dispatch({
         type: BANKS_SUCCESS,
         payload: banks,
-      })).catch((error) => dispatch({
+      })).catch(({ message }) => dispatch({
         type: BANKS_FAIL,
-        error
+        payload: { error: message },
       }));
   }
 }

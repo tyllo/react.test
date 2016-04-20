@@ -1,6 +1,5 @@
 import Storage from 'services/storage';
 import {
-  CHECK_AUTH,
   SIGNIN_REQUEST,
   SIGNIN_SUCCESS,
   SIGNIN_FAIL,
@@ -15,6 +14,7 @@ import {
 const defaults = {
   username: '',
   password: '',
+  error: '',
   isAutharicate: false,
   // TODO: hash
 };
@@ -22,37 +22,23 @@ const defaults = {
 const initialState = Storage.get('user', defaults);
 
 export default function userState(state = initialState, action) {
-  switch (action.type) {
-    case CHECK_AUTH:
-      return state.isAutharicate;
+  var newState = Object.assign({}, state);
 
+  switch (action.type) {
     case SIGNIN_REQUEST:
-      // TODO
-      return {};
+    case SIGNUP_REQUEST:
+      return Object.assign(newState, action.payload);
 
     case SIGNIN_SUCCESS:
-      // TODO
-      return {};
+    case SIGNUP_SUCCESS:
+      return Object.assign(newState, { isAutharicate: true });
 
     case SIGNIN_FAIL:
-      // TODO
-      return {};
-
-    case SIGNUP_REQUEST:
-      // TODO
-      return {};
-
-    case SIGNUP_SUCCESS:
-      // TODO
-      return {};
-
     case SIGNUP_FAIL:
-      // TODO
-      return {};
+      return Object.assign(newState, action.payload);
 
     case LOGOUT_SUCCESS:
-      // TODO
-      return {};
+      return Object.assign(newState, { isAutharicate: false });
 
     default:
       return state;

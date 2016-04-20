@@ -11,6 +11,7 @@ export default {
   context: path.resolve(config.src),
 
   entry: [
+    `webpack-dev-server/client?http://0.0.0.0:${ config.server.port }`,
     'webpack/hot/only-dev-server',
     `./${ config.bundleName }`,
   ],

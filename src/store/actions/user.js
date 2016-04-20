@@ -1,7 +1,5 @@
 import requester from 'services/requester';
 import {
-  CHECK_AUTH,
-
   SIGNIN_REQUEST,
   SIGNIN_SUCCESS,
   SIGNIN_FAIL,
@@ -13,42 +11,45 @@ import {
   LOGOUT_SUCCESS,
 } from 'store/constants/user';
 
-export function checkAuth() {
-  return {
-    type: CHECK_AUTH
-  }
-}
-
 export function login(payload) {
   return (dispatch) => {
-    dispatch({ type: SIGNIN_REQUEST });
+    dispatch({ type: SIGNIN_REQUEST, payload });
 
     requester.login(payload)
       .then(() => dispatch({
         type: SIGNIN_SUCCESS,
         redirect: '/',
       }))
-      .catch((error) => dispatch({
+      .catch(({ message }) => dispatch({
         type: SIGNIN_FAIL,
-        error,
+        payload: { error: message },
       }));
   }
 }
 
-export function signin(payload) {
+export function signup(payload) {
   return (dispatch) => {
-    dispatch({ type: SIGNUP_REQUEST });
+    dispatch({ type: SIGNUP_REQUEST, payload });
 
     requester.signup(payload)
-      .then(() => dispatch({ type: SIGNUP_SUCCESS }))
-      .catch((error) => dispatch({ type: SIGNUP_FAIL, error }));
+      .then(() => dispatch({
+        type: SIGNUP_SUCCESS,
+        redirect: '/',
+      }))
+      .catch(({ message }) => dispatch({
+        type: SIGNUP_FAIL,
+        payload: { error: message },
+      }));
   }
 }
 
 export function logout() {
   return (dispatch, state) => {
     // force logout
-    dispatch({ type: LOGOUT_SUCCESS });
+    dispatch({
+      type: LOGOUT_SUCCESS,
+      redirect: '/',
+    });
 
     requester.logout(state);
   }

@@ -1,23 +1,34 @@
-/* globals config */
-
 import React from 'react';
 import { Link } from 'react-router';
 import CSSModules from 'react-css-modules';
 
 import AuthInput from 'components/auth-input';
-import Callout from 'components/callout';
+import Message from 'components/message';
 
-import template from './template.jade'
+import template from './template.jade';
 import style from '../style.scss';
 
 @CSSModules(style)
 export default class Auth extends React.Component {
+  static defaultProps = {
+    username: '',
+    password: '',
+    error: '',
+  };
+
+  static propTypes = {
+    actions: React.PropTypes.object.isRequired,
+    username: React.PropTypes.string.isRequired,
+    password: React.PropTypes.string.isRequired,
+    error: React.PropTypes.string.isRequired,
+  };
+
   state = {
     username: '',
     password: '',
     password_confirm: '',
-    error_username: false,
     error_password: false,
+    error: false,
   };
 
   constructor(props) {
@@ -26,29 +37,31 @@ export default class Auth extends React.Component {
     this.signUp = this.signUp.bind(this);
     this.closeInfo = this.closeInfo.bind(this);
     this.signUp = this.signUp.bind(this);
-    this.validateUsername = this.validateUsername.bind(this);
     this.validatePwd = this.validatePwd.bind(this);
     this.setValue = this.setValue.bind(this);
+
+    this.state = Object.assign(this.state, this.props, { error: false });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    var newState = Object.assign({}, this.state, nextProps);
+    newState.error = !!nextProps.error;
+    this.setState(newState);
   }
 
   signUp(e) {
     e.preventDefault();
-    var { username, error_username, password, error_password } = this.state;
+    var { username, password, error_password } = this.state;
     this.validatePwd();
 
-    if (username && password && !error_username && !error_password) {
-      console.log('sign up', username, password);
+    if (username && password && !error_password) {
+      this.props.actions.signup({ username, password });
     }
   }
 
   closeInfo(fieldName) {
     var error = { [fieldName]: false };
     this.setState(error);
-  }
-
-  validateUsername(e) {
-    var username = e.target.value;
-    console.log('validate username');
   }
 
   validatePwd() {
@@ -70,6 +83,6 @@ export default class Auth extends React.Component {
   }
 
   render() {
-    return template.call(this, { AuthInput, Callout, Link });
+    return template.call(this, { AuthInput, Message, Link });
   }
 }

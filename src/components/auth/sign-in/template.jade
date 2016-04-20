@@ -20,11 +20,12 @@ section(styleName='section').row.small-12.small-centered.columns
         iconClassName='fa fa-user'
         value=this.state.password)
 
-      Callout(
+      Message(
+        type='alert'
         show=this.state.error
-        text='Error credentials'
+        text=this.props.error
         close=this.closeInfo)
 
     footer(styleName='footer')
       button(type='submit').button.expanded Login
-      p(styleName='signup-link') New to "Test App"? #[Link(to='auth/sign-up') Create an account.]
+      p(styleName='signup-link') New to "Test App"? #[Link(to='/auth/sign-up') Create an account.]

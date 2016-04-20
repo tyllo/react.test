@@ -11,7 +11,7 @@ const URL = {
 
 export default {
   login,
-  signin,
+  signup,
   logout,
   getBanks: fetchBanks,
 };
@@ -38,7 +38,7 @@ export function login(payload) {
   })
 }
 
-export function signin(payload) {
+export function signup(payload) {
   const config = {
     method: 'POST',
     body: payload,

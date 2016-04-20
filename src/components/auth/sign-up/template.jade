@@ -14,11 +14,6 @@ section(styleName='section').row.small-12.small-centered.columns
         iconClassName='fa fa-user'
         value=this.state.username)
 
-      Callout(
-        show=this.state.error_username
-        text='Username exists'
-        close=this.closeInfo.bind(this, 'error_username'))
-
       AuthInput(
         text='New password'
         type='password'
@@ -33,11 +28,18 @@ section(styleName='section').row.small-12.small-centered.columns
         iconClassName='fa fa-key'
         value=this.state.password_confirm)
 
-      Callout(
+      Message(
+        type='warning'
         show=this.state.error_password
         text='Invalid pasword'
         close=this.closeInfo.bind(this, 'error_password'))
 
+      Message(
+        type='alert'
+        show=this.state.error
+        text=this.props.error
+        close=this.closeInfo.bind(this, 'error'))
+
     footer(styleName='footer')
       button(type='submit').button.expanded Create an account
-      p(styleName='signup-link') Already have an account? #[Link(to='auth/sign-in') Log in]
+      p(styleName='signup-link') Already have an account? #[Link(to='/auth/sign-in') Log in]

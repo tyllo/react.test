@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import CSSModules from 'react-css-modules';
 
-import { connect } from 'react-redux';
+import { Connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as UserActions from 'store/actions/user';
 
@@ -12,31 +12,28 @@ import SignUp from 'components/auth/sign-up';
 import replaceDocumentTitle from 'mixins/replace-document-title';
 import style from './style.scss';
 
+const mapStateToProps = ({ user }) => ({ user });
+
+const mapDispatchToProps = (dispatch) => ({
+  userActions: bindActionCreators(UserActions, dispatch),
+});
+
 @CSSModules(style)
 @ReactMixin.decorate(replaceDocumentTitle)
-class AuthPage extends React.Component {
+@Connect(mapStateToProps, mapDispatchToProps)
+export default class AuthPage extends React.Component {
   documentTitle = 'Authorize';
 
-  static checkLogin(nextState, replace) {
-    // if (AUTHARICATE) {
-    //   replace('/');
-    // }
-  }
-
-  static logout(nextState, replace) {
-    replace('auth');
-  }
-
   render() {
+    var Page = ('sign-up' === this.props.params.name)
+      ? (<SignUp {...this.props.user} actions={this.props.userActions} />)
+      : (<SignIn {...this.props.user} actions={this.props.userActions} />);
+
     return (
       <div>
         <div styleName='helper' />
-        {('sign-up' === this.props.params.name) ? <SignUp /> : <SignIn />}
+        {Page}
       </div>
     );
   }
 }
-
-const mapStateToProps = ({ user }) => user;
-
-export default connect(mapStateToProps)(AuthPage);

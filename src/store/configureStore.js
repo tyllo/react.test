@@ -5,11 +5,18 @@ import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import redirect from 'store/middlewares/redirect';
 
+const func = f => f;
+const devTools = (config.isDebug && window.devToolsExtension)
+  ? window.devToolsExtension() : func;
+const logger = config.isDebug ? createLogger() : func;
+
 export default function configureStore() {
   const store = compose(
     applyMiddleware(thunkMiddleware),
-    applyMiddleware(createLogger()),
-    applyMiddleware(redirect)
+    applyMiddleware(logger),
+    // redirect must be last!!!
+    applyMiddleware(redirect),
+    devTools,
   )(createStore)(rootReducer);
 
   if (module.hot) {
