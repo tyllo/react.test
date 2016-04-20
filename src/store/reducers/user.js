@@ -41,6 +41,8 @@ export default function userState(state = initialState, action) {
       return Object.assign(newState, action.payload);
 
     case LOGOUT_SUCCESS:
+      newState.isAutharicated = false;
+      Storage.set('user', newState);
       return Object.assign({}, defaults);
 
     default:

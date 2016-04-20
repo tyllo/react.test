@@ -48,7 +48,6 @@ export function logout() {
     // force logout
     dispatch({
       type: LOGOUT_SUCCESS,
-      redirect: '/',
     });
 
     requester.logout(state);

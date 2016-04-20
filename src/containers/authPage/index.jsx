@@ -25,10 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
 export default class AuthPage extends React.Component {
   documentTitle = 'Authorize';
 
-  static checkLogin(nextState, replace) {
-    const login = window.localStorage.getItem('rr_login')
-    if (login !== 'admin') {
-      replace('/')
+  componentWillMount() {
+    if (this.props.user.isAutharicated) {
+      hashHistory.push('/');
     }
   }
 

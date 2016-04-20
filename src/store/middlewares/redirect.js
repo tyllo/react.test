@@ -4,6 +4,6 @@ import { hashHistory } from 'react-router';
 
 export default store => next => action => {
   if ( !action.redirect ) { return next(action); }
-  console.log('action.redirect =', action.redirect)
-  hashHistory.push(action.redirect);
+  setTimeout(() => hashHistory.push(action.redirect), 100);
+  return next(action);
 }
