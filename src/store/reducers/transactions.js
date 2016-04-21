@@ -8,33 +8,46 @@ import {
   TRANSACTION_DELETE,
 } from 'store/constants/transactions';
 
-const defaults = [
-  // TODO: delete this
-  { id: 1, amount: 300, bankId: 1000 },
-  { id: 2, amount: 200, bankId: 1200 },
-];
+const defaults = {
+  list: [],
+  fetch_at: 0,
+};
 
 export const initialState = Storage.get('transactions') || defaults;
 
 export default function transactionsState(state = initialState, action) {
+  var newState = Object.assign({}, state);
+
   switch (action.type) {
     case TRANSACTION_ADD:
-      var id = !state.length ? 0 : (Math.max(Math, state.map(item => item.id)) + 1);
+      var id = newState.list.length ?
+        (Math.max.apply(Math, newState.list.map(item => {
+          return item.id;
+        })) + 1) : 0;
+
       action.payload.id = id;
-      return state.concat(action.payload);
+      newState.list = newState.list.concat(action.payload);
+      Storage.set('transactions', newState);
+      return newState;
 
     case TRANSACTION_DELETE:
-      return state.filter(({ id }) => {
+      newState.list = newState.list.filter(({ id }) => {
         return id !== action.payload.id;
-      });
+      }) || [];
+      Storage.set('transactions', newState);
+      return newState;
 
     case TRANSACTIONS_SUCCESS:
-      return state
+      newState.list = newState.list
         .concat(action.payload)
         .sort((a, b) => a.id - b.id)
         .filter((item, i, arr) => {
           return !i || item.id !== arr[i - 1].id;
         });
+
+      newState.fetch_at = +(new Date());
+      Storage.set('transactions', newState);
+      return newState;
 
     case TRANSACTIONS_REQUEST:
     case TRANSACTIONS_FAIL:

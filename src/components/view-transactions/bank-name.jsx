@@ -26,7 +26,7 @@ export default class BankName extends React.Component {
   render() {
     var bank = this.getBankName();
     if (!bank || !bank.link) {
-      return (<span>Loading name...</span>);
+      return (<span>Loading bank name...</span>);
     }
 
     return (<a href={bank.link}>{bank.name}</a>);

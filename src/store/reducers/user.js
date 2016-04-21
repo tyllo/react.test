@@ -16,7 +16,7 @@ const defaults = {
   password: '',
   error: '',
   isAutharicated: false,
-  // TODO: hash
+  hash: null,
 };
 
 export const initialState = Storage.get('user') || defaults;

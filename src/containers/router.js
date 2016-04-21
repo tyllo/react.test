@@ -17,8 +17,8 @@ export default () => ({
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path='/' component={App}>
-          <IndexRedirect to='transactions' />
-          <Route path='transactions' component={TransactionsPage} />
+          <IndexRedirect to='add-transaction' />
+          <Route path='add-transaction' component={TransactionsPage} />
           <Route path='overview' component={OverviewPage} />
         </Route>
         <Route path='/auth' component={AuthPage}>

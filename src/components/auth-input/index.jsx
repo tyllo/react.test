@@ -53,5 +53,8 @@ export default class AuthInput extends React.Component {
 
   componentDidUpdate() {
     this.refs.input.focus();
+    var cache = this.refs.input;
+    this.refs.input = '';
+    this.refs.input = cache;
   }
 }

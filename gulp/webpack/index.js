@@ -67,9 +67,9 @@ export default {
   devServer: {
     port: config.server.port,
     hot: true,
-    inline: true,
+    // inline: true,
     contentBase: config.dest,
-    historyApiFallback: true,
+    // historyApiFallback: true,
     // compress: config.isDebug,
     // quiet: true,
     open: true,

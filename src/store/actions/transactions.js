@@ -8,12 +8,12 @@ import {
   TRANSACTION_DELETE,
 } from 'store/constants/transactions';
 
-export function getTransactions() {
+export function getTransactions(payload = {}) {
   return (dispatch) => {
     dispatch({ type: TRANSACTIONS_REQUEST });
 
-    requester.login(payload)
-      .then(() => dispatch({
+    requester.getTransactions(payload)
+      .then(payload => dispatch({
         type: TRANSACTIONS_SUCCESS,
         payload,
       }))

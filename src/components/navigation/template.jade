@@ -1,12 +1,27 @@
 header(styleName='header')
   .row.small-12.columns
-    div(styleName='logo') Test app
-    nav.button-group(styleName='buttons')
-      Link(to='transactions'
-        activeClassName='secondary'
-        className='button') #[i.fa.fa-plus] transaction
-      Link(to='overview'
-        activeClassName='secondary'
-        className='button')  #[i.fa.fa-university] overview
-      Link(to='/logout'
-        className='button alert') #[i.fa.fa-sign-out] logout
+    div(styleName='logo')= config.package.name
+
+    div(styleName='right-block')
+
+      nav.button-group(styleName='buttons')
+        Link(to='add-transaction'
+          activeClassName='active'
+          className='button')
+            i.fa.fa-plus
+            span.hide-for-small-only &nbsp; transaction
+        Link(to='overview'
+          activeClassName='active'
+          className='button')
+            i.fa.fa-university
+            span.hide-for-small-only &nbsp; overview
+
+      Profile(
+        username=this.props.username
+        summa=this.props.summa)
+
+      nav.button-group(styleName='buttons')
+        Link(to='/logout'
+          className='button alert')
+            i.fa.fa-sign-out
+            span.hide-for-small-only &nbsp;logout

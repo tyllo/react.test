@@ -49,7 +49,7 @@ loaders.url = {
   // include: [/images/],
   loader: 'url',
   query: {
-    limit: 1 * 1024,
+    limit: 3 * 1024,
     name: config.isDevelope
       ? config.assets.images + '/[name].[ext]'
       : config.assets.images + '/[name]-[hash:5].[ext]',

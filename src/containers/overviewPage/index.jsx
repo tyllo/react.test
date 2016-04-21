@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
+import CSSModules from 'react-css-modules';
 import replaceDocumentTitle from 'mixins/replace-document-title';
 
 import { connect as Connect } from 'react-redux';
@@ -7,12 +8,14 @@ import { bindActionCreators } from 'redux';
 import { getBanks } from 'store/actions/banks';
 import * as TransactionActions from 'store/actions/transactions';
 
+import { Link } from 'react-router';
 import ViewTransactions from 'components/view-transactions';
 import template from './template.jade';
+import style from './style.scss';
 
 const mapStateToProps = state => ({
   banks: state.banks,
-  transactions: state.transactions,
+  transactions: state.transactions.list,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,6 +25,7 @@ const mapDispatchToProps = dispatch => ({
 
 @Connect(mapStateToProps, mapDispatchToProps)
 @ReactMixin.decorate(replaceDocumentTitle)
+@CSSModules(style)
 export default class Overview extends React.Component {
   documentTitle = 'Overview';
 
@@ -37,21 +41,10 @@ export default class Overview extends React.Component {
     actions: React.PropTypes.object.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    if (!this.props.banks.length) {
-      this.props.getBanks();
-    }
-
-    if (!this.props.transactions.length) {
-      this.props.actions.getTransactions();
-    }
-  }
-
   render() {
     return template.call(this, {
       ViewTransactions,
+      Link,
     });
   }
 }

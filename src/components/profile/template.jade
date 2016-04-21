@@ -1,0 +1,9 @@
+- src = '//static-resource.np.community.playstation.net/avatar/3RD/UP43961310009_DE0DBCEDA3CC8114BF93_L.png'
+
+div(styleName='profile')
+  img(styleName='gravatar' src=src title=this.props.username)
+  div(styleName='text')
+    span(styleName='username')= this.props.username
+    span(styleName='summa')
+      i.fa.fa-usd &nbsp;
+      = this.props.summa

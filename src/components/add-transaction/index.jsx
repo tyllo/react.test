@@ -40,8 +40,11 @@ export default class AddTransaction extends React.Component {
   }
 
   validateAmount(e) {
-    // TODO: need remove repeat dots
-    this.refs.amount.value = e.target.value.replace(/[^\d\.]/g, '');
+    var value = e.target.value.replace(/[^\d\.]/g, '');
+    var arr = value.split('.');
+
+    this.refs.amount.value = (arr.length > 2)
+      ? `${ arr[0] }.${ arr[1] }` : value;
   }
 
   render() {

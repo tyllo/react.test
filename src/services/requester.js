@@ -4,9 +4,10 @@ import Storage from 'services/storage';
 import fetchBanks from './fetch-banks';
 
 const URL = {
-  LOGIN:  config.assets.path + '/ok.json',
-  SIGNUP: config.assets.path + '/ok.json',
-  LOGOUT: config.assets.path + '/ok.json',
+  LOGIN:  'ok.json',
+  SIGNUP: 'ok.json',
+  LOGOUT: 'ok.json',
+  TRANSACTIONS: 'transactions.json',
 };
 
 export default {
@@ -14,37 +15,45 @@ export default {
   signup,
   logout,
   getBanks: fetchBanks,
+  getTransactions,
 };
 
 export function login(payload) {
   const config = {
-    method: 'POST',
-    body: payload,
+    method: 'GET',
   };
 
-  return fetch(URL.LOGIN, config).then(() => {
-    // try get user from Storage if auth
-    var user = Storage.get('user') || {};
+  return fetch(URL.LOGIN, config)
+    .then(handlerResponse)
+    .then(response => response.login)
+    .then(response => {
 
-    if (user.username !== payload.username) {
-      throw new Error('User not found');
-    }
+      // try get user from Storage if auth
+      var user = Storage.get('user') || {};
 
-    if (user.password !== payload.password) {
-      throw new Error('Bad credentials');
-    }
+      if (user.username !== payload.username) {
+        throw new Error('User not found');
+      }
 
-    return user;
-  })
+      if (user.password !== payload.password) {
+        throw new Error('Bad credentials');
+      }
+
+      user.hash = '';
+      return user;
+    });
 }
 
 export function signup(payload) {
   const config = {
-    method: 'POST',
-    body: payload,
+    method: 'GET',
   };
 
-  return fetch(URL.SIGNUP, config).then(() => {
+  return fetch(URL.SIGNUP, config)
+    .then(handlerResponse)
+    .then(response => response.signup)
+    .then(response => {
+
     // try get user from Storage if auth
     var user = Storage.get('user', {});
     var { username, password } = payload;
@@ -54,16 +63,36 @@ export function signup(payload) {
     }
 
     return user;
-  })
+  });
 }
 
 export function logout(payload) {
   const config = {
-    method: 'POST',
-    body: payload,
+    method: 'GET',
   };
 
-  return fetch(URL.LOGOUT, config).then(() => {
-    return true;
-  })
+  return fetch(URL.LOGOUT, config)
+    .then(handlerResponse)
+    .then(response => response.logout);
+}
+
+export function getTransactions(payload) {
+  const config = {
+    method: 'GET',
+  };
+
+  return fetch(URL.TRANSACTIONS, config)
+    .then(handlerResponse)
+    .then(response => response.transactions);
+}
+
+/*********************************************
+                  helpers
+*********************************************/
+
+function handlerResponse(response) {
+  if (!response.ok) {
+    throw new Error(`Request error: ${ response.statusText }`);
+  }
+  return response.json();
 }

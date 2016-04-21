@@ -10,6 +10,9 @@ export default {
   dest: dest,
   modules: src,
   bundleName: 'main',
+  copy: [
+    src + '/templates/*.json'
+  ],
 
   templates: {
     src: src + '/templates/index.jade',

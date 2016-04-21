@@ -1,0 +1,13 @@
+.middle {
+  top: 50%;
+  position: absolute;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.title {
+  color: #FFF;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+}

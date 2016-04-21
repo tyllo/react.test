@@ -1,3 +1,3 @@
 import gulp from 'gulp';
 
-gulp.task('build', ['clean', 'jade', 'webpack']);
+gulp.task('build', ['clean', 'copy', 'jade', 'webpack']);

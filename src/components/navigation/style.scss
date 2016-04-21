@@ -10,7 +10,15 @@
   color: #FFF;
 }
 
-.buttons {
-  margin-bottom: 0;
+.right-block {
   float: right;
+}
+
+.buttons {
+  display: inline-block;
+  margin-bottom: 0;
+
+  :global .active {
+    color: #4E5D6C;
+  }
 }

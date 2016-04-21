@@ -2,6 +2,27 @@
   margin-top: 2rem;
 }
 
+.form {
+  margin-bottom: 0;
+
+  @media screen and (max-width: 40rem) {
+    &:hover {
+      input, button, select {
+        box-shadow: 0 0 1.5rem rgba(0,0,0,0.5);
+      }
+    }
+  }
+
+  @media screen and (min-width: 40rem) {
+    overflow: hidden;
+    height: 2.4375rem;
+
+    &:hover {
+      box-shadow: 0 0 1.5rem rgba(0,0,0,0.5);
+    }
+  }
+}
+
 .button {
   height: 2.4375rem;
 }

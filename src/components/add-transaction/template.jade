@@ -1,27 +1,28 @@
-div
-  section.row.small-12.medium-8.columns(
-    styleName='transaction-add')
-    form.row.collapse(
-      ref='form'
-      onSubmit=this.addTransaction)
-      label.small-5.columns
-        input(
-          type='tel'
-          ref='amount'
-          onChange=this.validateAmount
-          tabIndex=1
-          placeholder='Amount')
-      label.small-4.columns
-        select(
-          ref='select'
-          tabIndex=2
-          disabled=!this.props.banks.length)
-          option= this.props.banks.length ? '...' : 'Loading...'
-          each bank in this.props.banks
-            option(key=bank.id value=bank.id)= bank.name
+section.row.small-12.medium-8.columns(
+  styleName='transaction-add'
+  tabIndex=0)
+  form.row.collapse(
+    ref='form'
+    styleName='form'
+    onSubmit=this.addTransaction)
+    label.small-12.medium-5.columns
+      input(
+        type='tel'
+        ref='amount'
+        onChange=this.validateAmount
+        tabIndex=1
+        placeholder='Amount')
+    label.small-12.medium-4.columns
+      select(
+        ref='select'
+        tabIndex=2
+        disabled=!this.props.banks.length)
+        option= this.props.banks.length ? '...' : 'Loading...'
+        each bank in this.props.banks
+          option(key=bank.id value=bank.id)= bank.name
 
-      .small-3.columns
-        button(
-          type='submit'
-          tabIndex=3
-          styleName='button').button.expanded Добавить
+    .small-12.medium-3.columns
+      button(
+        type='submit'
+        tabIndex=3
+        styleName='button').button.expanded Добавить

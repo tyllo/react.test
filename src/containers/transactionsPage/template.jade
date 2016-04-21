@@ -1,4 +1,10 @@
-div
+- stylesName = this.state.newTransactions.length ? '' : this.props.styles.middle
+
+div(className=stylesName)
+
+  if stylesName
+    h3(styleName='title') Add Your transaction
+
   AddTransaction(
     banks=this.props.banks
     transactions=this.props.transactions
