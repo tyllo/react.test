@@ -1,0 +1,13 @@
+{
+  "login": {
+    "ok": true
+  },
+
+  "logout": {
+    "ok": true
+  },
+
+  "signup": {
+    "ok": true
+  }
+}

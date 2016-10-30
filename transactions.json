@@ -1,0 +1,7 @@
+{
+  "transactions": [
+    { "id": 1, "amount": 300, "bankId": 1000 },
+    { "id": 2, "amount": 200, "bankId": 1200 },
+    { "id": 3, "amount": 99,  "bankId": 450  }
+  ]
+}
