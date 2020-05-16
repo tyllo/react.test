@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactMixin from 'react-mixin';
 import CSSModules from 'react-css-modules';
 
 import BankName from './bank-name';

@@ -6,7 +6,7 @@ import { getBanks } from 'store/actions/banks';
 import * as TransactionActions from 'store/actions/transactions';
 
 import Navigation from 'components/navigation';
-import style from 'styles/main.scss';
+import 'styles/main.scss';
 
 const mapStateToProps = (state) => ({
   user: state.user,
