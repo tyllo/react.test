@@ -1,20 +1,20 @@
 import 'es6-promise';
 import 'fetch-polyfill';
 import Storage from 'services/storage';
-import fetchBanks from './fetch-banks';
 
 const URL = {
   LOGIN:  'ok.json',
   SIGNUP: 'ok.json',
   LOGOUT: 'ok.json',
   TRANSACTIONS: 'transactions.json',
+  BANKS: 'banks.json',
 };
 
 export default {
   login,
   signup,
   logout,
-  getBanks: fetchBanks,
+  getBanks,
   getTransactions,
 };
 
@@ -74,6 +74,16 @@ export function logout(payload) {
   return fetch(URL.LOGOUT, config)
     .then(handlerResponse)
     .then(response => response.logout);
+}
+
+export function getBanks(payload) {
+  const config = {
+    method: 'GET',
+  };
+
+  return fetch(URL.BANKS, config)
+    .then(handlerResponse)
+    .then(response => response.banks);
 }
 
 export function getTransactions(payload) {
